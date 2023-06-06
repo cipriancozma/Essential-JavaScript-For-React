@@ -143,11 +143,10 @@ function getBook(id) {
   return data.find((d) => d.id === id);
 }
 
-// Destructuring
+// Ternary Operator
 const book = getBook(2);
-const { title, author, genres } = book;
-console.log("title", title);
-console.log("author", author);
+const { title, author, genres, pages } = book;
+const [primaryGenre, secondaryGenre, ...other] = genres;
 
-const [primaryGenre, secondaryGenre, thirdGenre] = genres;
-console.log(primaryGenre, secondaryGenre, thirdGenre);
+const verifiedPages = pages > 1000 ? "over 1000" : "less than 1000";
+console.log(verifiedPages);

@@ -143,11 +143,10 @@ function getBook(id) {
   return data.find((d) => d.id === id);
 }
 
-// Destructuring
+// Template literals
 const book = getBook(2);
 const { title, author, genres } = book;
-console.log("title", title);
-console.log("author", author);
+const [primaryGenre, secondaryGenre, ...other] = genres;
 
-const [primaryGenre, secondaryGenre, thirdGenre] = genres;
-console.log(primaryGenre, secondaryGenre, thirdGenre);
+const summaryOfBook = `${title} is a nice book written by ${author} and it is of genre: ${primaryGenre}, ${secondaryGenre}`;
+console.log(summaryOfBook);

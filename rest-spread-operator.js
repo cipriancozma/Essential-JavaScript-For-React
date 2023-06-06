@@ -143,11 +143,17 @@ function getBook(id) {
   return data.find((d) => d.id === id);
 }
 
-// Destructuring
+// Rest / Spread Operator
 const book = getBook(2);
 const { title, author, genres } = book;
-console.log("title", title);
-console.log("author", author);
+const [primaryGenre, secondaryGenre, ...other] = genres;
+console.log(primaryGenre, secondaryGenre, other);
+const newGenres = [...genres, "epic fantasy"];
+console.log("newGenres", newGenres);
 
-const [primaryGenre, secondaryGenre, thirdGenre] = genres;
-console.log(primaryGenre, secondaryGenre, thirdGenre);
+const updatedBook = {
+  ...book,
+  pages: 1210, // overwrite existing property
+};
+
+console.log("updatedBook", updatedBook);

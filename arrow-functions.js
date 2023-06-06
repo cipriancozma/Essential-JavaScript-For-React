@@ -143,11 +143,17 @@ function getBook(id) {
   return data.find((d) => d.id === id);
 }
 
-// Destructuring
+// Arrow functions
 const book = getBook(2);
-const { title, author, genres } = book;
-console.log("title", title);
-console.log("author", author);
+const { title, author, genres, pages, publicationDate } = book;
+const [primaryGenre, secondaryGenre, ...other] = genres;
 
-const [primaryGenre, secondaryGenre, thirdGenre] = genres;
-console.log(primaryGenre, secondaryGenre, thirdGenre);
+function getYear(str) {
+  return str.split("-")[0];
+}
+
+console.log(getYear(publicationDate));
+
+const getYearArrow = (str) => str.split("-")[0];
+
+console.log(getYearArrow(publicationDate));
