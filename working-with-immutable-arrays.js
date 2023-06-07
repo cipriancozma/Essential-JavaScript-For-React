@@ -143,16 +143,32 @@ function getBook(id) {
   return data.find((d) => d.id === id);
 }
 
-// Sort method
+// Working with immutable arrays
 const book = getBook(3);
 const { title, author, genres, pages, publicationDate } = book;
 const [primaryGenre, secondaryGenre, ...other] = genres;
 
 const books = getBooks();
 
-const sortedBooksByPages = books.sort((a, b) => a.pages - b.pages);
-const sortedNewBooks = books.toSorted((a, b) => a.pages - b.pages);
+// 1) Add book to array
+const newBook = {
+  id: 6,
+  title: "Harry Potter and the Chamber of Secrets",
+  author: "J. K. Rowling",
+};
 
-console.log(sortedBooksByPages);
-console.log(books);
-console.log(sortedNewBooks);
+const booksAfterAdd = [...books, newBook];
+console.log("books", books);
+console.log("after adding", booksAfterAdd);
+
+// 2) Delete a book object from array
+const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 6);
+
+console.log("deleted book", booksAfterDelete);
+
+// 3) Update book object in an array
+const booksAfterUpdate = booksAfterDelete.map((book) => {
+  return book.id === 1 ? {} : book;
+});
+
+console.log("Books after update", booksAfterUpdate);

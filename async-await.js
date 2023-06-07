@@ -143,16 +143,22 @@ function getBook(id) {
   return data.find((d) => d.id === id);
 }
 
-// Sort method
-const book = getBook(3);
-const { title, author, genres, pages, publicationDate } = book;
-const [primaryGenre, secondaryGenre, ...other] = genres;
+// Async Await
+// const book = getBook(3);
+// const { title, author, genres, pages, publicationDate } = book;
+// const [primaryGenre, secondaryGenre, ...other] = genres;
 
-const books = getBooks();
+// const books = getBooks();
 
-const sortedBooksByPages = books.sort((a, b) => a.pages - b.pages);
-const sortedNewBooks = books.toSorted((a, b) => a.pages - b.pages);
+const getData = async () => {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+};
 
-console.log(sortedBooksByPages);
-console.log(books);
-console.log(sortedNewBooks);
+const dataTodos = getData();
+console.log(dataTodos);
