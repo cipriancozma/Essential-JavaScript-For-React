@@ -143,22 +143,15 @@ function getBook(id) {
   return data.find((d) => d.id === id);
 }
 
-// Short Circuiting And Logical Operators
-const book = getBook(2);
+// Optional Chaining
+const book = getBook(3);
 const { title, author, genres, pages, publicationDate } = book;
 const [primaryGenre, secondaryGenre, ...other] = genres;
 
-const titleCheck = title && "We have a title";
-console.log(titleCheck); // works with truthy and falsy values
+const getTotalReviewCount = (book) => {
+  const goodRead = book.reviews.goodreads?.reviewsCount ?? 0;
+  const librarything = book.reviews.librarything?.reviewsCount ?? 0;
+  return goodRead + librarything;
+};
 
-// falsy -> 0, '', null, undefined
-
-const spanishTranslation = book.translations.spanish || "NOT TRANSLATED";
-console.log(spanishTranslation);
-
-const count = book.reviews.librarything.reviewsCount || "no data"; // I want 0 here, but it is 'no data' -> 0 is treated as falsy value
-console.log(count);
-
-// Nullish coalescing operator
-const countTest = book.reviews.librarything.reviewsCount ?? "no data"; // checks for null or undefined ->  if the first part is null or undefined -> prints 'no data'
-console.log(countTest);
+console.log(getTotalReviewCount(book));
